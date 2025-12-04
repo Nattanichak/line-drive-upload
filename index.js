@@ -17,7 +17,7 @@ app.use(express.json());
 const auth = new google.auth.JWT(
 process.env.GOOGLE_CLIENT_EMAIL,
 null,
-process.env.GOOGLE_PRIVATE_KEY,
+process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),   // ✨ สำคัญมาก
 ['https://www.googleapis.com/auth/drive.file']
 );
 
