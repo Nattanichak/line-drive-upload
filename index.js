@@ -14,10 +14,12 @@ const app = express();
 app.use(express.json());
 
 // Setup Google Auth using credentials from env
-const googleCreds = JSON.parse(process.env.GOOGLE_CREDENTIALS);
-const auth = new google.auth.GoogleAuth({
-  credentials: googleCreds,
-  scopes: ["https://www.googleapis.com/auth/drive"]
+coconst auth = new google.auth.JWT(
+process.env.GOOGLE_CLIENT_EMAIL,
+null,
+process.env.GOOGLE_PRIVATE_KEY,
+['https://www.googleapis.com/auth/drive.file']
+);
 });
 const drive = google.drive({ version: "v3", auth });
 
