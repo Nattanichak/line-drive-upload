@@ -23,6 +23,7 @@ const drive = google.drive({ version: "v3", auth });
 
 app.post("/webhook", line.middleware(config), async (req, res) => {
   try {
+    const events = req.body.events;
     await Promise.all(req.body.events.map(handleEvent));
     res.status(200).send("OK");
   } catch (err) {
@@ -75,4 +76,4 @@ async function handleEvent(event) {
 }
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+app.listen(PORT, () => console.log("Server running on " + PORT));
